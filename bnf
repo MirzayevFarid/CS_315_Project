@@ -1,0 +1,194 @@
+<main> -> <identifier>{<stmnts>}
+
+<stmnts> -> <empty> | <stmnt> | <stmnt> <non_empty_stmnts>
+
+<non_empty_stmnts> -> <stmnt> | <stmnt> <non_empty_stmnts>
+
+<stmnt> ->  <decleration> ;
+          | <dec_init_operation>;
+          | <assignment_operation>;
+          | <create>;
+          | <delete>;
+          | <if>
+          | <while>
+          | <funct_definition>
+          | <function_call>;
+          | <read>;
+          | <write>;
+          | <return>;
+          | comment
+
+<decleration> -> <data_type> <identifier>
+
+<dec_init_operation> -> <data_type> <assignment_operation>
+                      | <set_data_type> <assignment_operation>
+
+<assignment_operation> -> <identifier> <assignment_operator> <assignment_operator_right>
+
+<assignment_operator_right> -> <identifier>
+                             | <var_type>
+                             | <set_type>
+                             | <funct_call>
+                             | <set_operation>
+
+<create> -> create <identifier>
+
+<delete> -> delete <identifier>
+
+<if> -> if(<boolean_expression>){<stmnts>}
+        | if(<boolean_expression>){<stmnts>} else {<stmnts>}
+
+<while> -> while(<boolean_expression>){<stmnts>}
+
+<funct_definition> -> <data_type><identifier>(<function_definition_params>) {<stmnts>}
+                    | <set_data_type><identifier>(<function_definition_params>) {<stmnts>}
+                    | void <identifier>(<function_definition_params>) {<stmnts>}
+
+<function_definition_params> -> <empty> | <funct_param> | <funct_param>,<non_empty_function_definition_params>
+
+<non_empty_function_definition_params> -> <funct_param> | <funct_param>,<non_empty_function_definition_params>
+
+<funct_param> -> <var_type> <identifier>
+
+<funct_call> -> <identifier>(<function_call_params>)
+
+<function_call_params> -> <empty> | <identifier> | <identifier>,<non_empty_function_call_params>
+
+<non_empty_function_call_params> -> <identifier> | <identifier>,<non_empty_function_call_params>
+
+<read> -> read(<identifier>)
+
+<write> -> write(<identifier> | <var_type> | <set_type>)
+
+<return> -> return <var_type> | return <set_type> | return <funct_call> | return <identifier>
+
+<boolean_expression> -> <boolean_logic_expression> | <bool_set_operation> 
+
+<boolean_logical_expression> -> <var_type> <logical_operands> <var_type>
+                | <identifier> <logical_operands> <var_type>
+                | <var_type> <logical_operands> <identifier>
+                | <identifier> <logical_operands> <identifier>
+                | <var_type> <negation> <logical_operands> <var_type>
+                | <identifier> <negation> <logical_operands> <var_type>
+                | <var_type> <negation> <logical_operands> <identifier>
+                | <identifier> <negation> <logical_operands> <identifier>  
+                | <identifier>
+                | <negation> <identifier>
+                | BOOLEAN
+                | <negation> BOOLEAN
+
+<bool_set_operation> -> <set_type><set_bool_operator><set_type>
+                    | <identifier><set_bool_operator><set_type>
+                    | <set_type><set_bool_operator><identifier>
+                    | <identifier><set_bool_operator><identifier>
+                    | <set_type><negation><set_bool_operator><set_type>
+                    | <identifier><negation><set_bool_operator><set_type>
+                    | <set_type><negation><set_bool_operator><identifier>
+                    | <identifier><negation><set_bool_operator><identifier>
+
+<logical_operands> -> <mul_operator>
+                     | <div_operator> 
+                     | <add_operator>
+                     | <sub_operator>
+                     | <or_operator>
+                     | <less_than_operator>   
+                     | <less_or_eq_operator>
+                     | <greater_than_operator>
+                     | <greater_or_eq_operator>
+                     | <equals_operator>
+                     | <not_equal_operator>
+
+<set_bool_operator> -> <proper_subset_operator> 
+                    | <subset_operator> 
+                    | <proper_superset_operator> 
+                    | <superset_operator> 
+                    | <equivalentset_operator>
+                    | <cartesian_operator>
+
+<set_operation> -> <union_operation> 
+                    | <intersection_operation> 
+                    | <difference_operation> 
+                    | <complement_operation>
+                    | <cartesian_operation>
+
+<union_operation> -> <identifier><union_operator><identifier>
+                | <identifier><union_operator><set>
+                | <set><union_operator><identifier>
+                | <set><union_operator><set>
+                
+<intersection_operation> -> <identifier><intersection_operator><identifier>
+                | <identifier><intersection_operator><set>
+                | <set><intersection_operator><identifier>
+                | <set><intersection_operator><set>
+
+<difference_operation> -> <identifier><difference_operator><identifier>
+                | <identifier><difference_operator><set>
+                | <set><difference_operator><identifier>
+                | <set><difference_operator><set>
+
+<complement_operation> -> <identifier><complement_operator><identifier>
+                | <identifier><complement_operator><set>
+                | <set><complement_operator><identifier>
+                | <set><complement_operator><set>
+
+<cartesian_operation> -> <identifier><cartesian_operator><identifier>
+                | <identifier><cartesian_operator><set>
+                | <set><cartesian_operator><identifier>
+                | <set><cartesian_operator><set>
+
+<set_type> -> <set> | <setofsets>
+
+<var_type> -> <integer>
+            | <double>
+            | <bool>
+            | <string>
+
+<data_type> -> int | double | string | set | bool
+
+<set_data_type> set | setofsets
+
+<identifier> -> <alphabetic>
+                | <identifier><alphabetic>
+                | <identifier><digit>
+
+<string> -> "<char_array>"
+<comment> -> //<char_array>//
+<char_array> -> <empty> | <char> | <char_array><char>
+<char> -> <alphabetic> | <digit>
+<double> -> <integer> | <integer>.<number>
+<integer> -> <number> | <sign><number>
+<number> -> <digit>|<number><digit>
+<signs> -> - | +
+<digit> -> 0|1|2|3|4|5|6|7|8|9
+<alphabetic> -> a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z
+          |A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|K|R|S|T|U|V|W|X|Y|Z
+<bool> -> true | false
+
+<union_operator> -> uni
+<intersection_operator> -> intx 
+<difference_operator> -> diff
+<complement_operator> -> comp
+<cartesian_operator> -> $*
+
+<assignment_operator> -> =
+
+<mul_operator> -> *
+<div_operator> -> /
+<add_operator> -> +
+<sub_operator> -> -
+<and_operator> -> &&
+<or_operator> -> ||          
+<less_than_operator> -> <                
+<less_or_eq_operator> -> <=               
+<greater_than_operator> -> >                
+<greater_or_eq_operator> -> >=
+<equals_operator> -> ==
+<not_equal_operator> -> !=
+
+<proper_subset_operator> -> $<
+<subset_operator> -> $<=
+<proper_superset_operator> -> $>
+<superset_operator> -> $>=
+<equivalentset_operator> -> $==
+
+<empty> -> ε

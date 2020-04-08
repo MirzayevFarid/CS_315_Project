@@ -1,0 +1,89 @@
+main{
+
+    create set1;
+    delete set1;
+
+    int x;
+    double y;
+    String z;
+    bool t;
+
+    int i = 1;
+    double d = 7.0;
+    bool b = true;
+    String s = "Test!@#$";
+
+    set setNumbers = $1,2,3$;
+    setofsets setNumbers2 = $$1$,$2,3,4$$;
+
+    x = 3;
+    y = 5.6;
+    z = "fsdfsdf";
+    t = false;
+
+    set1 = $5,a,7$;
+    set2 = $$1$,$2,20,4$$;
+
+    y = x;                                                     
+
+    if(setNumbers >= setOfsets) {subset = false;}
+
+    if(setNumbers <= setOfsets) {
+        subset = true;
+    } 
+    else 
+    { delete abc;
+    }
+
+    while(true){write(false);
+    }
+
+    int retInt() { 
+        return 1;
+    }
+
+    retInt();
+
+    int retIntValue(int a, String b, set c) { 
+        write(b);
+        write($a,b,c$);
+        return a;
+    }
+
+    void retDouble() { 
+        write(30.40);
+    }
+
+    bool functValue = returnBool();
+
+    read(functValue);
+
+    set e = d comp f;
+    set unionSets = set1 uni $a,b,c$;
+    set intersectionSample = set1 intx $3,4$;
+    set comSets = set1 diff set2;   
+    setofsets intersectionSample = $1,2$ $* $3,4$;    
+    
+    void methodName() {
+    	  set unionSets = set1 uni set2; 
+          a = b;
+          return null;
+    }   
+
+    read(readData);   
+     
+    a = b diff c; 
+
+    if ( ! b  ){write("ok");}
+
+    if( setNumbers <= setOfsets ) {
+    		  subset = true;} 
+
+    while(true){write(false);
+    }
+
+    if(setNumbers == 5) {subset = false;} else { delete abc;}
+
+    //                       END OF TEST FILE                     //
+
+}
